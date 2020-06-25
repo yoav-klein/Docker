@@ -47,3 +47,15 @@ $> docker run -p 8080:80 nginx
 ```
 
 will map port 80 in the container to port 8080 in the host.
+
+## Execute Conatiner Commands
+
+How to execute commands on a container. 
+
+Few ways:
+
+First way is telling the image what command to execute, by the Dockerfile. <br>
+Second way - execute docker run and define what command we want to execute by the container. <br>
+Third way - executing `docker conatiner exec`. There are few things to know about this command: <br>
+First, it'll only run when the container's primary process is running (?) <br>
+also, it'll execute in the default directory of the conatiner (?)
