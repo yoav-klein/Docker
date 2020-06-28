@@ -59,3 +59,36 @@ Second way - execute docker run and define what command we want to execute by th
 Third way - executing `docker conatiner exec`. There are few things to know about this command: <br>
 First, it'll only run when the container's primary process is running (?) <br>
 also, it'll execute in the default directory of the conatiner (?)
+
+You can also run `exec /bin/bash`, which will take you into the container and then you can <br>
+execute which command you like. <br>
+
+The command that's being executed when the container runs may be a "One and done" <br>
+which makes the container a task, or it's gonna be a long running process. <br>
+
+Let's try each of these out: <br>
+We're going to run a `Nginx` container:
+```
+  $> docker run -d nginx
+```
+
+Now you can see (at least at some dockerfile of Nginx), that the COMMAND is <br>
+```
+CMD ["nginx", "-g", "daemon off;"]
+```
+This is how we define what command will be executed once the container runs. <br>
+
+Now, let's try to run nginx in the following way: <br>
+```
+  $> docker run -it nginx /bin/bash
+```
+Now, the Nginx server wasn't started, since we overriden the CMD directive with our own! <br>
+Now, go and run nginx from within the container with the command in the Dockerfile:
+```
+  $> nginx -g 'daemon off;'
+```
+Now you're blocked. Now try to curl that IP and see that you get a reply. <br>
+
+
+
+
